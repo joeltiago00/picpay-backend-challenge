@@ -1,0 +1,25 @@
+version: "3"
+services:
+    mysqlsrv:
+        image: mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_DATABASE: "database"
+        ports:
+            - "3306:3306"
+        volumes:
+            - ./.docker/mysql/data:/var/lib/mysql
+    app:
+        build:
+            context: .
+            dockerfile: ./.docker/php/Dockerfile
+        user: 1000:1000
+        volumes:
+            - ./:/var/www/html
+            - ./.ci/local/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+            - ./.ci/local/ports.conf:/etc/apache2/ports.conf
+            - ./.ci/local/interface.conf:/etc/apache2/sites-enabled/interface.conf
+        depends_on:
+            - mysqlsrv
+        ports:
+            - "80:80"
