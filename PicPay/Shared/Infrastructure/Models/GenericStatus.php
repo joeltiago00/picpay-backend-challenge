@@ -2,6 +2,7 @@
 
 namespace PicPay\Shared\Infrastructure\Models;
 
+use Database\Factories\GenericStatusFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -17,4 +18,9 @@ class GenericStatus extends Model
     protected $casts = [
         'id' => 'integer',
     ];
+
+    protected static function newFactory(): GenericStatusFactory
+    {
+        return GenericStatusFactory::new();
+    }
 }

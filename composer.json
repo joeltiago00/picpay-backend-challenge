@@ -24,7 +24,10 @@
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
             "PicPay\\": "PicPay/"
-        }
+        },
+        "files": [
+            "helpers/string.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

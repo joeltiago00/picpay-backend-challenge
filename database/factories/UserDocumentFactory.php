@@ -17,7 +17,7 @@ class UserDocumentFactory extends Factory
         return [
             'user_id' => User::factory(),
             'type_id' => DocumentType::factory(),
-            'value' => fake()->randomNumber(16)
+            'value' => '98765432101'
         ];
     }
 }

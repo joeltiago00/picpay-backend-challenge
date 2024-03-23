@@ -2,6 +2,7 @@
 
 namespace PicPay\User\Infrastructure\Models;
 
+use Database\Factories\UserDocumentFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -33,5 +34,10 @@ class UserDocument extends Model
     public function type(): HasOne
     {
         return $this->hasOne(DocumentType::class, 'id', 'type_id');
+    }
+
+    protected static function newFactory(): UserDocumentFactory
+    {
+        return UserDocumentFactory::new();
     }
 }
