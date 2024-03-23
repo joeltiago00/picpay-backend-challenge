@@ -1,9 +1,9 @@
 <?php
 
-namespace PicPay\Shared\Domain\Repositories;
+namespace PicPay\CoreDomain\Contracts\Repositories;
 
+use PicPay\CoreDomain\Contracts\Entity;
 use PicPay\Shared\Domain\DTO\BaseDTO;
-use PicPay\Shared\Domain\Entities\Entity;
 
 interface Store
 {

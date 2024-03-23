@@ -3,7 +3,7 @@
 namespace PicPay\User\Presentation\Resources;
 
 use Illuminate\Http\Request;
-use PicPay\Shared\Presentation\Resources\Resource;
+use PicPay\CoreDomain\Presentation\Resources\Resource;
 
 class UserResource extends Resource
 {

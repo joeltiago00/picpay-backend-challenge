@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay\Shared\Infrastructure\Traits;
+namespace PicPay\CoreDomain\Infrastructure\Traits;
 
 use ReflectionClass;
 

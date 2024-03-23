@@ -1,9 +1,8 @@
 <?php
 
-namespace PicPay\Shared\Infrastructure\Traits;
+namespace PicPay\CoreDomain\Infrastructure\Traits;
 
-use Illuminate\Database\Eloquent\Model;
-use PicPay\Shared\Infrastructure\Collection;
+use PicPay\CoreDomain\Infrastructure\Classes\Collection;
 
 trait ToCollection
 {

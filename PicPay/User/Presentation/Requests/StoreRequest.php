@@ -2,7 +2,7 @@
 
 namespace PicPay\User\Presentation\Requests;
 
-use PicPay\Shared\Presentation\Requests\FormRequest;
+use PicPay\CoreDomain\Presentation\Requests\FormRequest;
 use PicPay\User\Presentation\Rules\UniqueCpf;
 
 class StoreRequest extends FormRequest

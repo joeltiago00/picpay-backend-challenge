@@ -2,9 +2,6 @@
 
 namespace Tests\Feature\User;
 
-use PicPay\User\Infrastructure\Enums\DocumentType;
-use PicPay\User\Infrastructure\Enums\DocumentType as DocumentTypeEnum;
-use PicPay\User\Infrastructure\Enums\TypeEnum;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\Feature\FeatureTest;
 use Tests\Providers\User\StoreProvider;

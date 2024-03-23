@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay\Shared\Presentation\Rules;
+namespace PicPay\CoreDomain\Presentation\Rules;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 

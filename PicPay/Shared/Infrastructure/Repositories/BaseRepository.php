@@ -3,15 +3,15 @@
 namespace PicPay\Shared\Infrastructure\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
+use PicPay\CoreDomain\Contracts\Entity;
+use PicPay\CoreDomain\Contracts\Repositories\Delete;
+use PicPay\CoreDomain\Contracts\Repositories\FindById;
+use PicPay\CoreDomain\Contracts\Repositories\GetById;
+use PicPay\CoreDomain\Contracts\Repositories\Store;
+use PicPay\CoreDomain\Contracts\Repositories\Update;
+use PicPay\CoreDomain\Infrastructure\Traits\Entity\HasEntity;
 use PicPay\Shared\Domain\DTO\BaseDTO;
 use PicPay\Shared\Domain\Entities\BaseEntity;
-use PicPay\Shared\Domain\Entities\Entity;
-use PicPay\Shared\Domain\Repositories\Delete;
-use PicPay\Shared\Domain\Repositories\FindById;
-use PicPay\Shared\Domain\Repositories\GetById;
-use PicPay\Shared\Domain\Repositories\Store;
-use PicPay\Shared\Domain\Repositories\Update;
-use PicPay\Shared\Infrastructure\Traits\Entity\HasEntity;
 
 class BaseRepository implements Store, Update, Delete, FindById, GetById
 {

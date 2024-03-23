@@ -3,7 +3,7 @@
 namespace PicPay\User\Presentation\Resources;
 
 use Illuminate\Http\Request;
-use PicPay\Shared\Presentation\Resources\Resource;
+use PicPay\CoreDomain\Presentation\Resources\Resource;
 use PicPay\User\Infrastructure\Enums\DocumentType;
 
 class DocumentResource extends Resource

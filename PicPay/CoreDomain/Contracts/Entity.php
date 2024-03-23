@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay\Shared\Domain\Entities;
+namespace PicPay\CoreDomain\Contracts;
 
 interface Entity
 {

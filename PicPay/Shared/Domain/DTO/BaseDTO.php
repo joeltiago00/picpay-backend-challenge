@@ -2,7 +2,8 @@
 
 namespace PicPay\Shared\Domain\DTO;
 
-use PicPay\Shared\Infrastructure\Traits\ToArray;
+
+use PicPay\CoreDomain\Infrastructure\Traits\ToArray;
 
 abstract class BaseDTO
 {

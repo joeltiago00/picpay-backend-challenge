@@ -2,9 +2,7 @@
 
 namespace PicPay\User\Domain\DTO;
 
-use Illuminate\Support\Carbon;
 use PicPay\Shared\Domain\DTO\BaseDTO;
-use PicPay\Shared\Infrastructure\Traits\ToArray;
 
 class UserDTO extends BaseDTO
 {

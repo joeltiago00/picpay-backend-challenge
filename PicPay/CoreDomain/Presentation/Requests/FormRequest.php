@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay\Shared\Presentation\Requests;
+namespace PicPay\CoreDomain\Presentation\Requests;
 
 use Illuminate\Foundation\Http\FormRequest as FoundationFormRequest;
 

@@ -1,9 +1,9 @@
 <?php
 
-namespace PicPay\Shared\Infrastructure\Traits\Entity;
+namespace PicPay\CoreDomain\Infrastructure\Traits\Entity;
 
 use Illuminate\Database\Eloquent\Model;
-use PicPay\Shared\Infrastructure\Collection;
+use PicPay\CoreDomain\Infrastructure\Classes\Collection;
 
 trait ToEntityCollection
 {

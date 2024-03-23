@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay\Shared\Infrastructure;
+namespace PicPay\CoreDomain\Infrastructure\Classes;
 
 use Illuminate\Support\Collection as SupportCollection;
 

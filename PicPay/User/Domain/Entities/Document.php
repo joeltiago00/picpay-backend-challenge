@@ -3,7 +3,6 @@
 namespace PicPay\User\Domain\Entities;
 
 use PicPay\Shared\Domain\Entities\BaseEntity;
-use PicPay\Shared\Infrastructure\Traits\ToArray;
 
 class Document extends BaseEntity
 {

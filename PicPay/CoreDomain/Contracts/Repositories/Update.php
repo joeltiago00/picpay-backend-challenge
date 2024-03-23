@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay\Shared\Domain\Repositories;
+namespace PicPay\CoreDomain\Contracts\Repositories;
 
 use PicPay\Shared\Domain\Entities\BaseEntity;
 

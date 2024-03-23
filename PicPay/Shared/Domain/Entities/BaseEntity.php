@@ -2,7 +2,8 @@
 
 namespace PicPay\Shared\Domain\Entities;
 
-use PicPay\Shared\Infrastructure\Traits\ToArray;
+use PicPay\CoreDomain\Contracts\Entity;
+use PicPay\CoreDomain\Infrastructure\Traits\ToArray;
 
 abstract class BaseEntity implements Entity
 {
