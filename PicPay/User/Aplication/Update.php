@@ -1,20 +1,22 @@
 <?php
 
-namespace PicPay\User\Domain\Actions;
+namespace PicPay\User\Aplication;
 
+use PicPay\User\Domain\Actions\FindById;
+use PicPay\User\Domain\Actions\UserUpdate;
 use PicPay\User\Domain\Exceptions\UserException;
-use PicPay\User\Domain\Repositories\UserRepository;
 
 readonly class Update
 {
-    public function __construct(private UserRepository $userRepository)
-    {
+    public function __construct(
+        private UserUpdate $userUpdate,
+        private FindById $findById
+    ){
     }
 
     public function handle(int $userId, array $payload): void
     {
-        $user = $this->userRepository
-            ->findById($userId);
+        $user = $this->findById->handle($userId);
 
         if (array_key_exists('first_name', $payload) && is_null($payload['first_name'])) {
             throw UserException::firstNameCannotBeNull();
@@ -24,7 +26,7 @@ readonly class Update
         $user->last_name = $payload['last_name'] ?? $user->last_name;
         $user->updated_at = now();
 
-        if (!$this->userRepository->update($user)) {
+        if (!$this->userUpdate->handle($user)) {
             throw UserException::notUpdated();
         }
     }

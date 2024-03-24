@@ -3,7 +3,7 @@
 namespace PicPay\User\Presentation\Controllers;
 
 use Illuminate\Http\Response;
-use PicPay\User\Domain\Actions\Update;
+use PicPay\User\Aplication\Update;
 use PicPay\User\Presentation\Requests\UpdateRequest;
 
 class UpdateController
