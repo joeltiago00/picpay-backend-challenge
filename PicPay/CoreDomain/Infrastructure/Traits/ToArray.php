@@ -2,6 +2,7 @@
 
 namespace PicPay\CoreDomain\Infrastructure\Traits;
 
+use Illuminate\Support\Carbon;
 use ReflectionClass;
 
 trait ToArray
@@ -24,7 +25,7 @@ trait ToArray
         foreach ($properties as $property) {
             $propertyValue = $property->getValue($this);
 
-            if (is_object($propertyValue))
+            if (is_object($propertyValue) && !($propertyValue instanceof Carbon))
                 $propertyValue = $propertyValue->toArray(true);
 
             $list[camelCaseToSnakeCase($property->name)] = $propertyValue;
@@ -43,7 +44,7 @@ trait ToArray
             if (empty($propertyValue))
                 continue;
 
-            if (is_object($propertyValue))
+            if (is_object($propertyValue) && !($propertyValue instanceof Carbon))
                 $propertyValue = $propertyValue->toArray();
 
             $list[camelCaseToSnakeCase($property->name)] = $propertyValue;

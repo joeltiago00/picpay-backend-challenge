@@ -19,6 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
             return response()->json([
                 'message' => $exception->getMessage(),
                 'trace' => $exception->getTrace()
-            ], $exception->getCode() !== 0 ? $exception->getCode() : Response::HTTP_UNPROCESSABLE_ENTITY);
+            ],
+                $exception->getCode() <= 0 || $exception->getCode() > 599
+                    ? Response::HTTP_UNPROCESSABLE_ENTITY
+                    : $exception->getCode() );
         });
     })->create();

@@ -13,4 +13,9 @@ abstract class BaseEntity implements Entity
     {
         return $this->{snakeCaseToCamelCase($name)};
     }
+
+    public function __set(string $name, mixed $value): void
+    {
+        $this->{snakeCaseToCamelCase($name)} = $value;
+    }
 }
