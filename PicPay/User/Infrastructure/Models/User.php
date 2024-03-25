@@ -7,13 +7,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use PicPay\CoreDomain\Infrastructure\Traits\Entity\HasEntity;
 use PicPay\Shared\Infrastructure\Models\GenericStatus;
+use PicPay\User\Domain\Entities\User as UserEntity;
 
 class User extends Authenticatable
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasEntity;
 
     protected $table = 'users';
+
+    protected string $baseEntity = UserEntity::class;
 
     protected $fillable = [
         'first_name',
@@ -26,7 +30,7 @@ class User extends Authenticatable
 
     protected $casts = [
         'id' => 'string',
-        'type_id' => 'integer'
+        'type_id' => 'integer',
     ];
 
     public function typeId(): HasOne

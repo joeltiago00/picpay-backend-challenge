@@ -15,11 +15,7 @@ use PicPay\Shared\Domain\Entities\BaseEntity;
 
 class BaseRepository implements Store, Update, Delete, FindById, GetById
 {
-    use HasEntity;
-
     protected string $model;
-
-    protected string $baseEntity;
 
     public function deleteId(int|string $id): bool
     {
@@ -35,7 +31,7 @@ class BaseRepository implements Store, Update, Delete, FindById, GetById
             ->newQuery()
             ->find($id);
 
-        return $this->toEntity($model);
+        return $this->getModel()->toEntity($model);
     }
 
     public function getById(int|string $id): ?Entity
@@ -48,7 +44,7 @@ class BaseRepository implements Store, Update, Delete, FindById, GetById
             return null;
         }
 
-        return $this->toEntity($model);
+        return $this->getModel()->toEntity($model);
     }
 
     public function store(BaseDTO $dto): Entity
@@ -57,7 +53,7 @@ class BaseRepository implements Store, Update, Delete, FindById, GetById
             ->newQuery()
             ->create($dto->toArray());
 
-        return $this->toEntity($model);
+        return $this->getModel()->toEntity($model);
     }
 
     public function update(BaseEntity $entity): bool

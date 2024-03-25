@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use PicPay\CoreDomain\Infrastructure\Traits\Entity\HasEntity;
+use PicPay\User\Domain\Entities\Document;
 
 class UserDocument extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasEntity;
 
     protected $table = 'user_documents';
+
+    protected string $baseEntity = Document::class;
 
     protected $fillable = [
         'user_id',
@@ -23,7 +27,7 @@ class UserDocument extends Model
 
     protected $casts = [
         'user_id' => 'integer',
-        'type_id' => 'integer'
+        'type_id' => 'integer',
     ];
 
     public function user(): BelongsTo

@@ -18,7 +18,6 @@ class User extends BaseEntity
         public ?Carbon $createdAt,
         public ?Carbon $updatedAt,
         public ?Carbon $deletedAt,
-        public ?Document $document = null
     ) {
     }
 

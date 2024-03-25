@@ -4,6 +4,7 @@ namespace PicPay\User\Infrastructure\Providers;
 
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
+use PicPay\User\Presentation\Controllers\IndexController;
 use PicPay\User\Presentation\Controllers\StoreController;
 use PicPay\User\Presentation\Controllers\UpdateController;
 
@@ -15,6 +16,7 @@ class UserRouteServiceProvider extends RouteServiceProvider
             ->name('users.')
             ->group(function () {
                 Route::post('', StoreController::class)->name('store');
+                Route::get('', IndexController::class)->name('index');
                 Route::patch('{userId}', UpdateController::class)->name('update');
             });
     }

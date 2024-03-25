@@ -8,12 +8,13 @@ use PicPay\User\Infrastructure\Enums\DocumentType;
 
 class DocumentResource extends Resource
 {
-    public function toArray(Request $request)
+    public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'type_id' => $this->type_id,
             'type_name' => DocumentType::tryFrom($this->type_id),
-            'value' => $this->value
+            'value' => $this->value,
         ];
     }
 }

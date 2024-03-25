@@ -25,6 +25,6 @@ class UserDocumentEloquentRepository extends BaseRepository implements UserDocum
         }
 
         /** @var Document */
-        return $this->toEntity($model);
+        return $this->getModel()->toEntity($model);
     }
 }

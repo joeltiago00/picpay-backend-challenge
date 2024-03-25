@@ -2,6 +2,7 @@
 
 namespace PicPay\User\Domain\Entities;
 
+use Illuminate\Support\Carbon;
 use PicPay\Shared\Domain\Entities\BaseEntity;
 
 class Document extends BaseEntity
@@ -11,7 +12,10 @@ class Document extends BaseEntity
         public readonly int $id,
         public readonly int $userId,
         public readonly int $typeId,
-        public string $value
+        public string $value,
+        public ?Carbon $createdAt,
+        public ?Carbon $updatedAt,
+        public ?Carbon $deletedAt,
     ) {
     }
 
@@ -22,7 +26,10 @@ class Document extends BaseEntity
             $data['id'],
             $data['user_id'],
             $data['type_id'],
-            $data['value']
+            $data['value'],
+            Carbon::parse($data['created_at']),
+            Carbon::parse($data['updated_at']),
+            empty($data['deleted_at']) ? null : Carbon::parse($data['deleted_at']),
         );
     }
 }
