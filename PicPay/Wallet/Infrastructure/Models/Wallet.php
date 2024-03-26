@@ -1,22 +1,27 @@
 <?php
 
-namespace PicPay\Wallet\Infrastructure;
+namespace PicPay\Wallet\Infrastructure\Models;
 
+use Database\Factories\WalletFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use PicPay\CoreDomain\Infrastructure\Traits\Entity\HasEntity;
 use PicPay\Transaction\Infrastructure\Enums\TypeEnum;
 use PicPay\Transaction\Infrastructure\Models\Transaction;
 use PicPay\User\Infrastructure\Models\User;
+use PicPay\Wallet\Domain\Entities\Wallet as WalletEntity;
 
 class Wallet extends Model
 {
-    use HasUuids, HasFactory, SoftDeletes;
+    use HasUuids, HasFactory, SoftDeletes, HasEntity;
 
     protected $table = 'wallets';
+
+    protected string $baseEntity = WalletEntity::class;
 
     public $incrementing = false;
 
@@ -28,6 +33,11 @@ class Wallet extends Model
         'id' => 'string',
         'user_id' => 'integer'
     ];
+
+    protected static function newFactory(): WalletFactory
+    {
+        return WalletFactory::new();
+    }
 
     public function user(): BelongsTo
     {

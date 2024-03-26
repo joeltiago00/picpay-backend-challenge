@@ -2,6 +2,8 @@
 
 namespace Tests\Feature\User;
 
+use Illuminate\Support\Facades\Event;
+use PicPay\Wallet\Domain\Events\CreateUserWallet;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\Feature\FeatureTest;
 use Tests\Providers\User\StoreProvider;
@@ -16,10 +18,14 @@ class StoreTest extends FeatureTest
      */
     public function testSuccess(array $payload): void
     {
+        Event::fake();
+
         $response = $this->postJson(route(self::ROUTE, $payload));
 
         $response->assertStatus(Response::HTTP_CREATED)
             ->assertJson(StoreProvider::responseSuccessExpected($payload));
+
+        Event::assertDispatched(CreateUserWallet::class);
 
         $responseArray = $response->json();
 

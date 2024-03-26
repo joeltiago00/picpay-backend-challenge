@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use PicPay\Shared\Infrastructure\Enums\StatusEnum;
 use PicPay\Transaction\Infrastructure\Enums\TypeEnum;
 use PicPay\Transaction\Infrastructure\Models\Transaction;
-use PicPay\Wallet\Infrastructure\Wallet;
+use PicPay\Wallet\Infrastructure\Models\Wallet;
 
 class TransactionFactory extends Factory
 {

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use PicPay\Shared\Infrastructure\Models\GenericStatus;
-use PicPay\Wallet\Infrastructure\Wallet;
+use PicPay\Wallet\Infrastructure\Models\Wallet;
 
 class Transaction extends Model
 {

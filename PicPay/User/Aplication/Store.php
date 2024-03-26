@@ -8,10 +8,10 @@ use PicPay\User\Domain\Actions\UserStore;
 use PicPay\User\Domain\DTO\DocumentDTO;
 use PicPay\User\Domain\DTO\UserDTO;
 use PicPay\User\Domain\Entities\User;
+use PicPay\Wallet\Domain\Events\CreateUserWallet;
 
 readonly class Store
 {
-
     public function __construct(
         private UserStore         $userStore,
         private UserDocumentStore $userDocumentStore
@@ -39,6 +39,8 @@ readonly class Store
         );
 
         $user->document = $this->userDocumentStore->handle($documentDto);
+
+        CreateUserWallet::dispatch($user);
 
         return $user;
     }

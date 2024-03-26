@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use PicPay\User\Infrastructure\Models\User;
-use PicPay\Wallet\Infrastructure\Wallet;
+use PicPay\Wallet\Infrastructure\Models\Wallet;
 
 class WalletFactory extends Factory
 {

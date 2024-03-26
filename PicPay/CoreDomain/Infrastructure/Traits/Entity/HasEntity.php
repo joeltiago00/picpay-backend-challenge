@@ -8,7 +8,6 @@ trait HasEntity
 {
     use ToEntity, ToEntityCollection;
 
-
     public function getEntity(): string
     {
         return $this->baseEntity;
