@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay\CentralBank\Domain\Contracts;
+namespace PicPay\Shared\Domain\Contracts;
 
 interface Client
 {

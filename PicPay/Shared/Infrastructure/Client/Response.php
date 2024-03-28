@@ -1,8 +1,9 @@
 <?php
 
-namespace PicPay\CentralBank\Infrastructure\Client;
+namespace PicPay\Shared\Infrastructure\Client;
 
-use \Illuminate\Http\Client\Response as IlluminateResponse;
+use Illuminate\Http\Client\Response as IlluminateResponse;
+
 readonly class Response
 {
     public function __construct(private IlluminateResponse $response)

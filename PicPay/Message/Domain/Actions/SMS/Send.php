@@ -1,19 +1,19 @@
 <?php
 
-namespace PicPay\CentralBank\Domain\Actions;
+namespace PicPay\Message\Domain\Actions\SMS;
 
 use PicPay\Shared\Domain\Contracts\Client;
 use Symfony\Component\HttpFoundation\Response;
 
-readonly class Check
+readonly class Send
 {
     public function __construct(private Client $client)
     {
     }
 
-    public function handle(int $accountId): bool
+    public function handle(string $phoneNumber, string $message): bool
     {
-        $response = $this->client->get(config('integrations.central-bank.urls.check-authorization'));
+        $response = $this->client->get(config('integrations.sms-sender.urls.send'));
 
         return $response->status() === Response::HTTP_OK;
     }

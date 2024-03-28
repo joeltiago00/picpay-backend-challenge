@@ -2,18 +2,18 @@
 
 return [
     // if url is expired need to create another in wire mock api website
+    'base-url' => 'https://6605f218d92166b2e3c307c2.mockapi.io/api/v1//',
 
     'central-bank' => [
-        'base-url' => 'https://9j096.wiremockapi.cloud/',
+
         'urls' => [
-            'check-authorization' => 'authorization/check'
+            'check-authorization' => 'authorization'
         ]
     ],
 
     'sms-sender' => [
-        'base-url' => 'https://9j096.wiremockapi.cloud/',
         'urls' => [
-            'send' => 'sms/send'
+            'send' => 'sms'
         ]
     ],
 
