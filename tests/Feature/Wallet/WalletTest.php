@@ -1,11 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Wallet;
 
 use Exception;
 use PicPay\User\Infrastructure\Models\User;
 use PicPay\Wallet\Application\Store;
 use PicPay\Wallet\Infrastructure\Models\Wallet;
+use Tests\Feature\FeatureTest;
 
 class WalletTest extends FeatureTest
 {
