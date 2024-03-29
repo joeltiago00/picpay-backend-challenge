@@ -3,7 +3,7 @@
 namespace PicPay\User\Presentation\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use PicPay\User\Aplication\Store;
+use PicPay\User\Application\Store;
 use PicPay\User\Presentation\Requests\StoreRequest;
 use PicPay\User\Presentation\Resources\UserResource;
 use Symfony\Component\HttpFoundation\Response;

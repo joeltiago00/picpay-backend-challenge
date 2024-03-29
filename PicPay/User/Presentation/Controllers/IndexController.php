@@ -3,7 +3,7 @@
 namespace PicPay\User\Presentation\Controllers;
 
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
-use PicPay\User\Aplication\Index;
+use PicPay\User\Application\Index;
 use PicPay\User\Presentation\Requests\IndexRequest;
 use PicPay\User\Presentation\Resources\UserResource;
 

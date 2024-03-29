@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay\User\Aplication;
+namespace PicPay\User\Application;
 
 use PicPay\CoreDomain\Infrastructure\Classes\Collection;
 use PicPay\User\Domain\Actions\IndexUser;

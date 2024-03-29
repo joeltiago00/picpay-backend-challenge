@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay\User\Aplication;
+namespace PicPay\User\Application;
 
 use PicPay\User\Domain\Actions\FindById;
 use PicPay\User\Domain\Actions\UserUpdate;

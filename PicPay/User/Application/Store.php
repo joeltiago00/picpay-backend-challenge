@@ -1,6 +1,6 @@
 <?php
 
-namespace PicPay\User\Aplication;
+namespace PicPay\User\Application;
 
 use PicPay\Shared\Infrastructure\Enums\StatusEnum;
 use PicPay\User\Domain\Actions\UserDocumentStore;
