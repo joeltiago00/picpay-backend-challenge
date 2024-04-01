@@ -8,16 +8,17 @@ use PicPay\Shared\Domain\Entities\BaseEntity;
 class User extends BaseEntity
 {
     public function __construct(
-        public readonly int    $id,
-        public string  $firstName,
-        public string  $lastName,
-        public string  $email,
-        public string  $password,
-        public int     $typeId,
-        public int     $statusId,
-        public ?Carbon $createdAt,
-        public ?Carbon $updatedAt,
-        public ?Carbon $deletedAt,
+        public readonly int $id,
+        public string       $firstName,
+        public string       $lastName,
+        public string       $email,
+        public string       $password,
+        public int          $typeId,
+        public int          $statusId,
+        public string       $phoneNumber,
+        public ?Carbon      $createdAt,
+        public ?Carbon      $updatedAt,
+        public ?Carbon      $deletedAt,
     ) {
     }
 
@@ -31,6 +32,7 @@ class User extends BaseEntity
             $data['password'],
             $data['type_id'],
             $data['status_id'],
+            $data['phone_number'],
             Carbon::parse($data['created_at']),
             Carbon::parse($data['updated_at']),
             empty($data['deleted_at']) ? null : Carbon::parse($data['deleted_at']),

@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             ->sequence(
                 ['name' => TransactionTypeEnum::ENTRY->name],
                 ['name' => TransactionTypeEnum::TRASNFER->name],
-                ['name' => TransactionTypeEnum::REFOUND->name],
+                ['name' => TransactionTypeEnum::REFUND->name],
             );
     }
 }

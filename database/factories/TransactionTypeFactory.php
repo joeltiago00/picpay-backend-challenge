@@ -14,7 +14,7 @@ class TransactionTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->randomElement([TypeEnum::ENTRY->name, TypeEnum::TRASNFER->name, TypeEnum::REFOUND->name])
+            'name' => fake()->randomElement([TypeEnum::ENTRY->name, TypeEnum::TRASNFER->name, TypeEnum::REFUND->name])
         ];
     }
 }

@@ -8,14 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use PicPay\CoreDomain\Infrastructure\Traits\Entity\HasEntity;
 use PicPay\Shared\Infrastructure\Models\GenericStatus;
+use PicPay\Transaction\Domain\Entities\Transaction as TransactionEntity;
 use PicPay\Wallet\Infrastructure\Models\Wallet;
 
 class Transaction extends Model
 {
-    use HasUuids, HasFactory, SoftDeletes;
+    use HasUuids, HasFactory, SoftDeletes, HasEntity;
 
     protected $table = 'transactions';
+
+    protected string $baseEntity = TransactionEntity::class;
+
     public $incrementing = false;
 
     protected $fillable = [
@@ -24,8 +29,8 @@ class Transaction extends Model
         'amount',
         'status_id',
         'type_id',
-        'transaction_refound_id',
-        'refound_reason'
+        'transaction_refund_id',
+        'refund_reason'
     ];
 
     public function payerWallet(): BelongsTo
@@ -48,8 +53,8 @@ class Transaction extends Model
         return $this->hasOne(TransactionType::class, 'id', 'type_id');
     }
 
-    public function refoundTransaction(): HasOne
+    public function refundTransaction(): HasOne
     {
-        return $this->hasOne(Transaction::class, 'id', 'transaction_refound_id');
+        return $this->hasOne(Transaction::class, 'id', 'transaction_refund_id');
     }
 }

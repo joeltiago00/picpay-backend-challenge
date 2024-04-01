@@ -25,10 +25,11 @@ class BaseRepository implements Store, Update, Delete, FindById, GetById
             ->delete();
     }
 
-    public function findById(int|string $id): Entity
+    public function findById(int|string $id, array $relationships = []): Entity
     {
         $model = $this->getModel()
             ->newQuery()
+            ->with($relationships)
             ->find($id);
 
         return $this->getModel()->toEntity($model);

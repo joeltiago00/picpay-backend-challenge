@@ -20,8 +20,4 @@ class IndexRequest extends FormRequest
             'email' => ['nullable', 'string', 'email:rfc,filter'],
         ];
     }
-
-    public static function macro($name, $macro)
-    {
-    }
 }

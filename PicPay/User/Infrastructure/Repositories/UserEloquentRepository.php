@@ -34,4 +34,14 @@ class UserEloquentRepository extends BaseRepository implements UserRepository
 
         return $this->getModel()->toCollection($results, ['document']);
     }
+
+    public function getTypeById(int $id): int
+    {
+        return $this->getModel()
+            ->newQuery()
+            ->select('type_id')
+            ->where('id', $this)
+            ->first()
+            ?->type_id;
+    }
 }

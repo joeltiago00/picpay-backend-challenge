@@ -11,10 +11,15 @@ return [
     ],
 
     'wallet' => [
-        'user-already-has-waller' => 'User cannot create a wallet. Try again or made contact with support.'
+        'user-already-has-waller' => 'User cannot create a wallet. Try again or made contact with support.',
     ],
 
     'message' => [
-        'invalid-service' => 'Service :service is not implemented.'
+        'invalid-service' => 'Service :service is not implemented.',
+    ],
+
+    'transaction' => [
+        'user-not-authorized' => 'You dont have authorization to make a transaction.',
+        'user-dont-have-sufficient-amount' => 'You dont have sufficient amount to make this transaction.',
     ]
 ];

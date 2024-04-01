@@ -6,5 +6,5 @@ enum TypeEnum: int
 {
     case ENTRY = 1;
     case TRASNFER = 2;
-    case REFOUND = 3;
+    case REFUND = 3;
 }

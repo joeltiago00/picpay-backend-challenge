@@ -8,4 +8,5 @@ enum StatusEnum: int
     case INACTIVE = 2;
     case APPROVED = 3;
     case NOT_APPROVED = 4;
+    case NOT_AUTHORIZED = 5;
 }

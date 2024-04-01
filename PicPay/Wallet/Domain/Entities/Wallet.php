@@ -8,7 +8,8 @@ class Wallet extends BaseEntity
 {
     public function __construct(
         public readonly string $id,
-        public int $userId
+        public int $userId,
+        public int $currentAmount
     )
     {
     }
@@ -17,7 +18,8 @@ class Wallet extends BaseEntity
     {
         return new self(
             $data['id'],
-            $data['user_id']
+            $data['user_id'],
+            $data['current_amount']
         );
     }
 }

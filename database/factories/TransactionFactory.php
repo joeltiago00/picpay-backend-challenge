@@ -14,7 +14,7 @@ class TransactionFactory extends Factory
 
     public function definition(): array
     {
-        $typeId = fake()->randomElement([TypeEnum::ENTRY->value, TypeEnum::TRASNFER->value, TypeEnum::REFOUND->value]);
+        $typeId = fake()->randomElement([TypeEnum::ENTRY->value, TypeEnum::TRASNFER->value, TypeEnum::REFUND->value]);
 
         return [
             'payer_wallet_id' => Wallet::factory(),
@@ -22,10 +22,10 @@ class TransactionFactory extends Factory
             'amount' => fake()->randomNumber(8),
             'status_id' => fake()->randomElement([StatusEnum::APPROVED->value, StatusEnum::NOT_APPROVED->value]),
             'type_id' => $typeId,
-            'refound_transaction_id' => $typeId !== TypeEnum::REFOUND->value
+            'refound_transaction_id' => $typeId !== TypeEnum::REFUND->value
                 ? null
                 : Transaction::factory()->create([ 'type_id' => TypeEnum::TRASNFER->value, 'status_id' => StatusEnum::APPROVED->value]),
-            'refound_reason' => $typeId !== TypeEnum::REFOUND->value
+            'refound_reason' => $typeId !== TypeEnum::REFUND->value
                 ? null
                 : fake()->text(30)
         ];
