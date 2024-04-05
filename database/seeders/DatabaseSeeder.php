@@ -19,31 +19,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // TODO:: Fix this seeder to create all registers
-        GenericStatus::factory(4)
-            ->sequence(
-                ['name' => StatusEnum::ACTIVE->name],
-                ['name' => StatusEnum::INACTIVE->name],
-                ['name' => StatusEnum::APPROVED->name],
-            )->create();
-
-        DocumentType::factory(2)
-            ->sequence(
-                ['name' => DocumentTypeEnum::CPF->name],
-                ['name' => DocumentTypeEnum::CNPJ->name],
-            )->create();
-
-        UserType::factory(2)
-            ->sequence(
-                ['name' => TypeEnum::COMMON->value],
-                ['name' => TypeEnum::SHOP->value],
-            );
-
-        TransactionType::factory(3)
-            ->sequence(
-                ['name' => TransactionTypeEnum::ENTRY->name],
-                ['name' => TransactionTypeEnum::TRASNFER->name],
-                ['name' => TransactionTypeEnum::REFUND->name],
-            );
+        $this->call([
+            StatusSeeder::class,
+            DocumentTypeSeeder::class,
+            TransactionTypeSeeder::class,
+            UserTypeSeeder::class
+        ]);
     }
 }
