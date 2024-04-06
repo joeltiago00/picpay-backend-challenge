@@ -5,6 +5,7 @@ namespace PicPay\Transaction\Application;
 use PicPay\CentralBank\Domain\Facades\CentralBank;
 use PicPay\Message\Domain\Facades\Message;
 use PicPay\Shared\Infrastructure\Enums\StatusEnum;
+use PicPay\Transaction\Domain\Action\HasSufficientAmount;
 use PicPay\Transaction\Domain\Action\StoreTransaction;
 use PicPay\Transaction\Domain\Entities\Transaction;
 use PicPay\Transaction\Domain\Exceptions\TransactionException;
@@ -18,10 +19,11 @@ use PicPay\Wallet\Domain\Actions\GetWallet;
 readonly class MakeTransaction
 {
     public function __construct(
-        private GetWallet        $getWallet,
-        private GetUserType      $getUserType,
-        private GetUser          $getUser,
-        private StoreTransaction $storeTransaction
+        private GetWallet           $getWallet,
+        private GetUserType         $getUserType,
+        private GetUser             $getUser,
+        private StoreTransaction    $storeTransaction,
+        private HasSufficientAmount $hasSufficientAmount
     )
     {
     }
@@ -33,11 +35,12 @@ readonly class MakeTransaction
 
         $payeeUser = $this->getUser->handle($this->getWallet->handle($data['payee_wallet_id'])->userId);
 
-        if ($this->getUserType->handle($payerUser->id)->value !== TypeEnum::COMMON->value) {
-            throw TransactionException::userNotAuthorized();
-        }
+        // TODO:: handle with user type on factory
+        //if ($this->getUserType->handle($payerUser->id)->value !== TypeEnum::COMMON->value) {
+        //    throw TransactionException::userNotAuthorized();
+        //}
 
-        if ((round($payerWallet->currentAmount / 100, 2) - round($data['amount'], 2)) < 0) {
+        if ($this->hasSufficientAmount->handle($payerWallet->currentAmount, $data['amount'])) {
             $this->storeTransaction
                 ->handle([
                     ...$data,
@@ -59,7 +62,7 @@ readonly class MakeTransaction
             throw TransactionException::userNotAuthorized();
         }
 
-        $this->storeTransaction
+        $transaction = $this->storeTransaction
             ->handle([
                 ...$data,
                 'status_id' => StatusEnum::APPROVED->value,
@@ -68,6 +71,8 @@ readonly class MakeTransaction
 
         Message::service('sms')
             ->send($payerUser->phoneNumber, $this->formatMessage($data['amount'], $payerUser, $payeeUser));
+
+        return $transaction;
     }
 
     private function formatMessage(int $amount, User $payerUser, User $payeeUser): string

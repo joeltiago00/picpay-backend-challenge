@@ -9,7 +9,7 @@ abstract class BaseEntity implements Entity
 {
     use ToArray;
 
-    public array $relationships;
+    public array $relationships = [];
 
     public function __get(string $name): mixed
     {

@@ -2,6 +2,7 @@
 
 namespace PicPay\Transaction\Infrastructure\Models;
 
+use Database\Factories\TransactionFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -32,6 +33,11 @@ class Transaction extends Model
         'transaction_refund_id',
         'refund_reason'
     ];
+
+    protected static function newFactory(): TransactionFactory
+    {
+        return TransactionFactory::new();
+    }
 
     public function payerWallet(): BelongsTo
     {
