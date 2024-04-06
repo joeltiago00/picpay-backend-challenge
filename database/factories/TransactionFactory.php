@@ -22,10 +22,10 @@ class TransactionFactory extends Factory
             'amount' => fake()->randomNumber(8),
             'status_id' => fake()->randomElement([StatusEnum::APPROVED->value, StatusEnum::NOT_APPROVED->value]),
             'type_id' => $typeId,
-            'refound_transaction_id' => $typeId !== TypeEnum::REFUND->value
+            'transaction_refund_id' => $typeId !== TypeEnum::REFUND->value
                 ? null
                 : Transaction::factory()->create([ 'type_id' => TypeEnum::TRASNFER->value, 'status_id' => StatusEnum::APPROVED->value]),
-            'refound_reason' => $typeId !== TypeEnum::REFUND->value
+            'refund_reason' => $typeId !== TypeEnum::REFUND->value
                 ? null
                 : fake()->text(30)
         ];

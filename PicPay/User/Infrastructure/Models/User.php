@@ -25,7 +25,8 @@ class User extends Authenticatable
         'email',
         'password',
         'type_id',
-        'status_id'
+        'status_id',
+        'phone_number'
     ];
 
     protected $casts = [

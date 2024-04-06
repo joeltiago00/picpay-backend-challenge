@@ -21,6 +21,7 @@ class UserFactory extends Factory
             'password' => Hash::make('password'),
             'type_id' => fake()->randomElement([TypeEnum::COMMON->value, TypeEnum::SHOP->value]),
             'status_id' => StatusEnum::ACTIVE->value,
+            'phone_number' => fake()->phoneNumber()
         ];
     }
 
