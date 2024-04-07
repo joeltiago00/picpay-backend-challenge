@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use PicPay\CoreDomain\Infrastructure\Traits\Entity\HasEntity;
 use PicPay\Shared\Infrastructure\Models\GenericStatus;
 use PicPay\User\Domain\Entities\User as UserEntity;
+use PicPay\Wallet\Infrastructure\Models\Wallet;
 
 class User extends Authenticatable
 {
@@ -34,7 +35,12 @@ class User extends Authenticatable
         'type_id' => 'integer',
     ];
 
-    public function typeId(): HasOne
+    protected static function newFactory(): UserFactory
+    {
+        return UserFactory::new();
+    }
+
+    public function type(): HasOne
     {
         return $this->hasOne(UserType::class,'id', 'type_id');
     }
@@ -49,8 +55,8 @@ class User extends Authenticatable
         return $this->hasOne(UserDocument::class, 'user_id', 'id');
     }
 
-    protected static function newFactory(): UserFactory
+    public function wallet(): HasOne
     {
-        return UserFactory::new();
+        return $this->hasOne(Wallet::class, 'user_id', 'id');
     }
 }

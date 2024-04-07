@@ -40,7 +40,7 @@ class UserEloquentRepository extends BaseRepository implements UserRepository
         return $this->getModel()
             ->newQuery()
             ->select('type_id')
-            ->where('id', $this)
+            ->where('id', $id)
             ->first()
             ?->type_id;
     }
