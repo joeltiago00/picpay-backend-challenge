@@ -15,6 +15,7 @@ use PicPay\User\Application\GetUserType;
 use PicPay\User\Domain\Entities\User;
 use PicPay\User\Infrastructure\Enums\TypeEnum;
 use PicPay\Wallet\Domain\Actions\GetWallet;
+use PicPay\Wallet\Domain\Entities\Wallet;
 
 readonly class MakeTransaction
 {
@@ -35,31 +36,11 @@ readonly class MakeTransaction
 
         $payeeUser = $this->getUser->handle($this->getWallet->handle($data['payee_wallet_id'])->userId);
 
-        if ($this->getUserType->handle($payerUser->id)->value !== TypeEnum::COMMON->value) {
-            throw TransactionException::userNotAuthorized();
-        }
+        $this->checkUserType($payerUser);
 
-        if ($this->hasSufficientAmount->handle($payerWallet->currentAmount, $data['amount'])) {
-            $this->storeTransaction
-                ->handle([
-                    ...$data,
-                    'status_id' => StatusEnum::NOT_APPROVED->value,
-                    'type_id' => TransactionTypeEnum::TRASNFER->value
-                ]);
+        $this->checkIfPayerHasSufficientAmount($payerWallet, $data);
 
-            throw TransactionException::userDontHaveSufficientAmount();
-        }
-
-        if (!CentralBank::authorization()->check($payerWallet->userId)) {
-            $this->storeTransaction
-                ->handle([
-                    ...$data,
-                    'status_id' => StatusEnum::NOT_AUTHORIZED->value,
-                    'type_id' => TransactionTypeEnum::TRASNFER->value
-                ]);
-
-            throw TransactionException::userNotAuthorized();
-        }
+        $this->checkIfPayerHasAuthorization($payerWallet, $data);
 
         $transaction = $this->storeTransaction
             ->handle([
@@ -81,5 +62,40 @@ readonly class MakeTransaction
             'payer' => sprintf('%s %s', $payerUser->firstName, $payerUser->lastName),
             'amount' => round($amount / 100, 2)
         ]);
+    }
+
+    private function checkUserType(User $payerUser): void
+    {
+        if ($this->getUserType->handle($payerUser->id)->value !== TypeEnum::COMMON->value) {
+            throw TransactionException::userNotAuthorized();
+        }
+    }
+
+    private function checkIfPayerHasSufficientAmount(Wallet $payerWallet, array $data): void
+    {
+        if ($this->hasSufficientAmount->handle($payerWallet->currentAmount, $data['amount'])) {
+            $this->storeTransaction
+                ->handle([
+                    ...$data,
+                    'status_id' => StatusEnum::NOT_APPROVED->value,
+                    'type_id' => TransactionTypeEnum::TRASNFER->value
+                ]);
+
+            throw TransactionException::userDontHaveSufficientAmount();
+        }
+    }
+
+    private function checkIfPayerHasAuthorization(Wallet $payerWallet, array $data): void
+    {
+        if (!CentralBank::authorization()->check($payerWallet->userId)) {
+            $this->storeTransaction
+                ->handle([
+                    ...$data,
+                    'status_id' => StatusEnum::NOT_AUTHORIZED->value,
+                    'type_id' => TransactionTypeEnum::TRASNFER->value
+                ]);
+
+            throw TransactionException::userNotAuthorized();
+        }
     }
 }
